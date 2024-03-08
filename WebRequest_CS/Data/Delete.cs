@@ -2,14 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using WebRequest_CS.Model;
 
 namespace WebRequest_CS.Data
 {
-    public class Get
+    public class Delete
     {
         public static async Task<Answer> Request(string apiUrl, Dictionary<string, string> headers)
         {
@@ -22,7 +21,7 @@ namespace WebRequest_CS.Data
                     {
                         client.DefaultRequestHeaders.Add(item.Key, item.Value);
                     }
-                    answer.Response = await client.GetAsync(apiUrl);
+                    answer.Response = await client.DeleteAsync(apiUrl);
                     answer.Result = JObject.Parse(await answer.Response.Content.ReadAsStringAsync());
                 }
                 catch (HttpRequestException rex)
